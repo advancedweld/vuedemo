@@ -4,14 +4,17 @@
     <div class="banner-wrap">
       <Banner :banner-height="BannerHeight"></Banner>
       <over-lay></over-lay>
-      <scroll-hint v-scroll-to="{ element: '.wrap-block', duration: 300, easing: 'ease', offset: 1 }"></scroll-hint>
+      <scroll-hint
+        v-scroll-to="{ element: '.wrap-block', duration: 300, easing: 'ease', offset: 1 }"
+      ></scroll-hint>
     </div>
     <index-service></index-service>
     <AwFooter></AwFooter>
   </div>
 </template>
 <script lang="ts" setup name="">
-import AwHeader from '@/components/public/Header.vue'
+// import AwHeader from '@/components/public/Header.vue'
+import AwHeader from '@com/public/Header.vue'
 import AwFooter from '@/components/public/Footer.vue'
 import OverLay from '@/components/OverLayText.vue'
 import IndexService from '@/components/IndexService.vue'
@@ -38,17 +41,16 @@ onUnmounted(() => {
   window.removeEventListener('scroll', scrollHandle)
 })
 
-function setBannerHeight () {
+function setBannerHeight() {
   BannerHeight.value = window.innerHeight
   mainStore.commit('setBannerHeight', {
     bannerHeight: BannerHeight.value
   })
 }
 
-function scrollHandle () {
-  scrollTop.value = document.documentElement.scrollTop ||
-    window.pageYOffset ||
-    document.body.scrollTop
+function scrollHandle() {
+  scrollTop.value =
+    document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
   if (scrollTop.value <= BannerHeight.value - 35) {
     mainStore.commit('setHeaderLogo', {
       headerLogoShow: true
