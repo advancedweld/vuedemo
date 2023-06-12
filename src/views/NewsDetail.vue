@@ -25,30 +25,28 @@
 import AwHeader from '@/components/public/Header'
 import AwFooter from '@/components/public/Footer'
 import HotNews from '@/components/HotNews'
-import { computed, onMounted, reactive, ref } from "vue";
-import { onBeforeRouteLeave, useRoute, useRouter } from "vue-router";
-import { useStore } from "vuex";
-import { getNewsDetailsApi } from "@/apis/news";
+import { computed, onMounted, reactive, ref } from 'vue'
+import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { getNewsDetailsApi } from '@/apis/news'
 
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
-const store = useStore();
+const store = useStore()
 
-const news_detail = ref(
-  {
-    title: '',
-    publish_time: '',
-    content: '',
-    type: ''
-  }
-);
+const news_detail = ref({
+  title: '',
+  publish_time: '',
+  content: '',
+  type: ''
+})
 
 const news_path = computed(() => route.params?.id ?? '')
 onMounted(() => {
   store.commit('setShadowActive', {
     headerLogoShow: false
-  });
+  })
 
   store.commit('setShadowActive', {
     headerShadowActive: true
@@ -61,7 +59,7 @@ onMounted(() => {
   store.commit('setHeaderShow', {
     headerShow: false
   })
-  getNewsDetails();
+  getNewsDetails()
 })
 
 //获取新闻详情
@@ -71,8 +69,9 @@ async function getNewsDetails() {
     console.log(res)
   } else {
     // this.$message.success('获取成功')
-    news_detail.value= {
-      title: res.data.news_detail.news_title, publish_time: res.data.news_detail.publish_time,
+    news_detail.value = {
+      title: res.data.news_detail.news_title,
+      publish_time: res.data.news_detail.publish_time,
       content: res.data.news_detail.news_content,
       type: res.data.news_detail.aw_news_type.type_name
     }
@@ -80,9 +79,10 @@ async function getNewsDetails() {
 }
 </script>
 
-<style lang = "less" scoped>
+<style lang="less" scoped>
+@import '@/assets/style/variable.less';
 .news_header {
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
   /* border-bottom: 1px solid #eff0f1; */
 }
@@ -104,9 +104,9 @@ async function getNewsDetails() {
   padding-top: 40px;
 }
 
-:deep(.el-breadcrumb__item){
-  &:last-child{
-    span{
+:deep(.el-breadcrumb__item) {
+  &:last-child {
+    span {
       color: #f84521;
     }
   }

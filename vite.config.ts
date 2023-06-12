@@ -1,4 +1,4 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
@@ -10,27 +10,57 @@ console.log(' @@@@meta ', import.meta.url)
  *fileURLToPath(new URL('./src', import.meta.url)) 拼接当前文件目录为绝对路径
  */
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [vue(), vueJsx()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@com': fileURLToPath(new URL('./src/components', import.meta.url))
-    }
-  },
-  css: {
-    preprocessorOptions: {
-      less: {
-        javascriptEnabled: true,
-        additionalData: `@import "${fileURLToPath(
-          new URL('./src/assets/style/variable.less', import.meta.url)
-        )}";`
+
+//  vite css配置https://juejin.cn/post/7175366648659411000
+
+// https://vitejs.dev/config/
+export default defineConfig((command: any) => {
+  const config = {
+    plugins: [
+      vue(),
+      vueJsx(),
+      {
+        name: 'custom-html',
+        enforce: 'pre',
+        transformIndexHtml(html: string) {
+          // 动态替换 HTML 中的脚本引用
+          console.log('@@@@@@html ', html)
+          if (command.mode === 'development') {
+            const _html = html.replace(
+              '<script type="module" src="/src/main-prod.ts"></script>',
+              '<script type="module" src="/src/main-dev.ts"></script>'
+            )
+            return _html
+          } else {
+            return html
+          }
+        }
+      }
+    ],
+    css: {
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true,
+          additionalData: `@import "${fileURLToPath(
+            new URL('./src/assets/style/variable.less', import.meta.url)
+          )}";`
+        }
+      }
+    },
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '@com': fileURLToPath(new URL('./src/components', import.meta.url))
+      },
+      build: {
+        rollupOptions: {
+          input: {
+            dev: 'src/main-dev.ts',
+            prod: 'src/main-prod.ts'
+          }
+        }
       }
     }
-  },
-  build: {
-    rollupOptions: {
-      input: 'src/main-dev.ts'
-    }
   }
+  return config
 })
