@@ -30,4 +30,4 @@ app.directive('scroll-to', VueScrollTo)
 
 app.use(ElementPlus).use(mavonEditor).use(store).use(router).mount('#app')
 
-// console.log('@@@@@@product import.meta.env ', import.meta.env)
+console.log('@@@@@@product import.meta.env ', import.meta.env)

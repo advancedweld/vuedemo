@@ -70,18 +70,18 @@ onBeforeMount(() => {
       title: '产品与服务',
       path: '/product'
     },
-    {
-      title: '人才招聘',
-      path: '/job'
-    },
+    // {
+    //   title: '人才招聘',
+    //   path: '/job'
+    // },
     // {
     //   title: '客户服务',
     //   path: '/customer'
     // },
-    {
-      title: '登录',
-      path: '/login'
-    },
+    // {
+    //   title: '登录',
+    //   path: '/login'
+    // },
     {
       title: '关于',
       path: '/about'
