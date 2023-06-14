@@ -14,7 +14,7 @@ console.log(' @@@@process ', process.env)
 
 //  vite css配置https://juejin.cn/post/7175366648659411000
 
-// https://vitejs.dev/config/
+// https://cn.vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
   const config = {
     plugins: [
