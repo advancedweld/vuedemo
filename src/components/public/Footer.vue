@@ -3,7 +3,8 @@
     <div class="footer_content">
       <div class="footer_logo footer-content-column">
         <div class="logo-container">
-          <img :src="logo_url" alt="" />
+          <!-- <img :src="logo_url" alt="" /> -->
+            <img src="../../assets/img/index/logoColor.png" alt="" />
           <div class="logo-text">
             <p class="text1">Xanadu</p>
             <p class="text2">INTERNET COMPANY</p>
@@ -47,7 +48,7 @@
 </template>
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue'
-
+import weibo_img from '@assets/img/focus/weibo.png'
 type ConcatItem = {
   name: string
   email: string
@@ -89,8 +90,9 @@ onMounted(() => {
   focus_icon.value = [
     {
       name: 'weibo',
-      path: '../../assets/img/focus/weibo.png',
-      qr: '../../assets/img/focus/qr_weibo.png',
+       path: weibo_img,
+      // qr: '../../assets/img/focus/qr_weibo.png',
+       qr: '@assets/img/focus/qr_weibo.png',
       info: '关注官方微博'
     },
     {

@@ -50,7 +50,8 @@ export default defineConfig((command: any) => {
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
-        '@com': fileURLToPath(new URL('./src/components', import.meta.url))
+        '@com': fileURLToPath(new URL('./src/components', import.meta.url)),
+        '@assets': fileURLToPath(new URL('./src/assets', import.meta.url))
       },
       build: {
         rollupOptions: {
@@ -58,7 +59,8 @@ export default defineConfig((command: any) => {
             dev: 'src/main-dev.ts',
             prod: 'src/main-prod.ts'
           }
-        }
+        },
+        // assetsDir: 'assets'
       }
     }
   }

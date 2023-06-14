@@ -28,9 +28,10 @@
 <script lang="ts" setup name="AwHeader">
 import { computed, onBeforeMount, ref, toRefs } from 'vue'
 import { mapState, useStore } from 'vuex'
+import logoUrl from '@assets/img/index/logo.png'
+import logoColorUrl from '@assets/img/index/logoColor.png'
 
 import type { MainStates } from '@/store'
-
 type NavItem = {
   title: string
   path: string
@@ -49,10 +50,10 @@ const navDarkActive = computed(() => store.state.navDarkActive)
 logo_img.value = [
   {
     // path: require('../../assets/img/index/logo.png'),
-    path: '../../assets/img/index/logo.png'
+    path: logoUrl
   },
   {
-    path: '../../assets/img/index/logoColor.png'
+    path: logoColorUrl
   }
 ]
 onBeforeMount(() => {

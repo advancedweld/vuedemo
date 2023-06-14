@@ -22,9 +22,9 @@
 </template>
 
 <script setup>
-import AwHeader from '@/components/public/Header'
-import AwFooter from '@/components/public/Footer'
-import HotNews from '@/components/HotNews'
+import AwHeader from '@/components/public/Header.vue'
+import AwFooter from '@/components/public/Footer.vue'
+import HotNews from '@/components/HotNews.vue'
 import { computed, onMounted, reactive, ref } from 'vue'
 import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router'
 import { useStore } from 'vuex'
