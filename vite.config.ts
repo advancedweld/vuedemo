@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 import vueJsx from '@vitejs/plugin-vue-jsx'
 console.log(' @@@@meta ', import.meta)
-console.log(' @@@@process ', process.env)
+// console.log(' @@@@process ', process.env)
 /*
  *import.meta.url: 当前文件目录 file:///D:/github/vuedemo/vite.config.ts
  *fileURLToPath(new URL('./src', import.meta.url)) 拼接当前文件目录为绝对路径
