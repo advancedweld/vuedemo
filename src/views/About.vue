@@ -5,6 +5,7 @@ import mainStore from '@/store'
 import { getAboutLit } from '@/apis/about'
 async function fetchData() {
   console.log('@@@@@@fetchData')
+  // console.log('@@@@@@fetchData', undefined.haswe)
   getAboutLit()
   // alert('登录')
 }
