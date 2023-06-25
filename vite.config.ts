@@ -59,12 +59,13 @@ export default defineConfig(({ command, mode }) => {
       }
     },
     build: {
-      rollupOptions: {
-        input: {
-          dev: 'src/main-dev.ts',
-          prod: 'src/main-prod.ts'
-        }
-      }
+      /* 暂时不需要自定义构建选项，否则构建产物中没有Index.html文件 */
+      // rollupOptions: {
+      //   input: {
+      //     dev: 'src/main-dev.ts',
+      //     prod: 'src/main-prod.ts'
+      //   }
+      // }
       // assetsDir: 'assets'
     },
     server: {
