@@ -1,5 +1,6 @@
 import axios from 'axios'
 import type { AxiosRequestConfig } from 'axios'
+console.log('@@@@@环境变量1', import.meta.env.VITE_ENV)
 const instance = axios.create({
   // baseURL: '/api/v1', // 开发模式下
   // baseURL: 'https://xanadu.aerowang.cn/api/v1', // 线上模式

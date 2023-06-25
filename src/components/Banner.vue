@@ -16,6 +16,9 @@
 <script lang="ts" setup>
 import { onBeforeMount, ref } from 'vue'
 
+import b1Jpg from '@/assets/img/banner1.jpg'
+import b2Jpg from '@/assets/img/banner2.png'
+import b3Jpg from '@/assets/img/banner3.jpg'
 type ImgItem = {
   id: number;
   imgUrl: string;
@@ -33,22 +36,22 @@ onBeforeMount(() => {
   imgList.value = [
     {
       id: 0,
-      imgUrl: 'https://cdn.jsdelivr.net/gh/xanaduwang/aerowang/img/20210604161353.jpg'
+      imgUrl: b1Jpg
     },
     {
       id: 1,
-      imgUrl: 'https://cdn.jsdelivr.net/gh/xanaduwang/aerowang/img/20210604161737.jpg'
+      imgUrl: b2Jpg
     },
     {
       id: 2,
-      imgUrl: 'https://cdn.jsdelivr.net/gh/xanaduwang/aerowang/img/20210604161757.png'
+      imgUrl: b3Jpg
     },
     {
       id: 3,
-      imgUrl: 'https://cdn.jsdelivr.net/gh/xanaduwang/aerowang/img/20210604161818.jpg'
+      imgUrl: b1Jpg
     }, {
       id: 4,
-      imgUrl: 'https://cdn.jsdelivr.net/gh/xanaduwang/aerowang/img/20210604161834.jpg'
+      imgUrl: b2Jpg
     }
   ]
 })

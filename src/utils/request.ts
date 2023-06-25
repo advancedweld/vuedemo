@@ -14,7 +14,7 @@ axios.defaults.headers['x-client-version'] = import.meta.env.VITE_ENV
 const requestMap = new Map()
 const instance = axios.create({
   timeout: 10000,
-  baseURL: '/api'
+  baseURL: import.meta.env.VITE_ENV
 })
 
 /**
