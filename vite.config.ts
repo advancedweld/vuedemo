@@ -44,7 +44,10 @@ export default defineConfig(({ command, mode }) => {
           javascriptEnabled: true,
           additionalData: `@import "${fileURLToPath(
             new URL('./src/assets/style/variable.less', import.meta.url)
-          )}";`
+          )}";`,
+          globalVars: {
+            blue: '#1CC0FF'
+          }
         }
       }
     },
@@ -53,15 +56,28 @@ export default defineConfig(({ command, mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         '@com': fileURLToPath(new URL('./src/components', import.meta.url)),
         '@assets': fileURLToPath(new URL('./src/assets', import.meta.url))
-      },
-      build: {
-        rollupOptions: {
-          input: {
-            dev: 'src/main-dev.ts',
-            prod: 'src/main-prod.ts'
+      }
+    },
+    build: {
+      rollupOptions: {
+        input: {
+          dev: 'src/main-dev.ts',
+          prod: 'src/main-prod.ts'
+        }
+      }
+      // assetsDir: 'assets'
+    },
+    server: {
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          rewrite: (path) => {
+            const url = path.replace(/^\/api/, '')
+            console.log('@@@@@重写路径', path, url)
+            return url
           }
         }
-        // assetsDir: 'assets'
       }
     }
   }

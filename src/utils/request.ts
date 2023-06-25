@@ -1,10 +1,11 @@
 import axios from 'axios'
 
+const IS_PROD = import.meta.env.VITE_ENV === 'production'
 // axios 默认配置
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 // axios.defaults.headers['x-client'] = process.env.xClient
 // axios.defaults.headers['x-client-version'] = process.env.xClientVersion
-console.log('@@@@@@@环境变量', import.meta)
+console.log('@@@@@@@环境变量', import.meta.env)
 axios.defaults.headers['x-client'] = import.meta.env.VITE_ENV
 axios.defaults.headers['x-client-version'] = import.meta.env.VITE_ENV
 
@@ -14,7 +15,11 @@ axios.defaults.headers['x-client-version'] = import.meta.env.VITE_ENV
 const requestMap = new Map()
 const instance = axios.create({
   timeout: 10000,
-  baseURL: import.meta.env.VITE_ENV
+  baseURL: IS_PROD ? 'http://localhost:3000' : '/api'
+  // proxy: {
+  //   host: 'localhost',
+  //   port: 3306
+  // }
 })
 
 /**
