@@ -18,20 +18,35 @@
               </router-link>
             </h2>
           </div>
-
-          <!-- <div @click="onLoad">登录</div> -->
+        </div>
+        <div class="profile-wrapper">
+          <!-- <el-dropdown v-if="userProfileStore.isLogin" trigger="click" @command="handleCommand">
+            <span class="el-dropdown-link">
+              <img
+                class="avatar"
+                src="https://avatars.githubusercontent.com/u/21203766?v=4"
+                alt="头像"
+              />
+              <i class="el-icon-arrow-down el-icon--right"></i>
+            </span>
+            <el-dropdown-menu>
+              <el-dropdown-item command="userProfile">个人中心</el-dropdown-item>
+              <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown> -->
+          <el-button v-if="userProfileStore.isLogin" @click="loginOutUser">登出</el-button>
+          <el-button v-else @click="loginUser">登录</el-button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup name="AwHeader">
-import { computed, onBeforeMount, ref, toRefs } from 'vue'
-import { mapState, useStore } from 'vuex'
+import { computed, onBeforeMount, onMounted, ref, toRefs } from 'vue'
 import logoUrl from '@assets/img/index/logo.png'
 import logoColorUrl from '@assets/img/index/logoColor.png'
 
-import type { MainStates } from '@/store'
+import { useUserProfileStore } from '@/store/userProfile'
 type NavItem = {
   title: string
   path: string
@@ -39,14 +54,29 @@ type NavItem = {
 type ImgItem = {
   path: string
 }
+
+const userProfileStore = useUserProfileStore()
+
+console.log('🚀 ~ file: Header.vue:66 ~ userProfile:', userProfileStore.isLogin)
+
 const navList = ref<NavItem[]>([])
 const logo_img = ref<ImgItem[]>([])
-const store = useStore<MainStates>()
+// const store = useStore<MainStates>()
 
-const headerShowActive = computed(() => store.state.headerShadowActive)
-const headerShow = computed(() => store.state.headerShow)
-const headerLogoShow = computed(() => store.state.headerLogoShow)
-const navDarkActive = computed(() => store.state.navDarkActive)
+const loginUser = async () => {
+  userProfileStore.login()
+}
+const loginOutUser = async () => {
+  userProfileStore.loginOut()
+}
+const handleCommand = (command: any) => {
+  console.log('@@@@@handleCommand', command)
+}
+const headerShowActive = false
+const headerShow = false
+const headerLogoShow = false
+const navDarkActive = false
+
 logo_img.value = [
   {
     // path: require('../../assets/img/index/logo.png'),
@@ -56,6 +86,7 @@ logo_img.value = [
     path: logoColorUrl
   }
 ]
+
 onBeforeMount(() => {
   navList.value = [
     {
@@ -144,6 +175,12 @@ h2 {
       height: 35px;
     }
   }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
 }
 
 .menu-wrapper {
@@ -211,6 +248,10 @@ h2 {
   }
 }
 
+.profile-wrapper {
+  border: 1px solid red;
+  display: flex;
+}
 .nav_text_white {
   color: rgba(255, 255, 255, 1);
 }

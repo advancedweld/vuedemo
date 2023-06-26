@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { createPinia } from 'pinia'
+
 // scrollto from vue3 please see https://github.com/rigor789/vue-scrollto/issues/380
 import VueScrollTo from 'vue-scrollto'
 // element-plus
@@ -25,10 +27,11 @@ window._hmt = _hmt // 将_hmt挂载到window下
   var s: HTMLElement = document.getElementsByTagName('script')[0]
   s.parentNode?.insertBefore(hm, s)
 })()
-/* eslint-enable */
+
 const app = createApp(App)
+const pinia = createPinia()
 app.directive('scroll-to', VueScrollTo)
 
-app.use(ElementPlus).use(mavonEditor).use(store).use(router).mount('#app')
+app.use(pinia).use(ElementPlus).use(mavonEditor).use(store).use(router).mount('#app')
 
 // console.log('@@@@@@development import.meta.env ', import.meta.env)

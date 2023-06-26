@@ -20,7 +20,7 @@
   "dependencies": {
     "element-plus": "^2.3.6",
     "mavon-editor": "^2.10.4",
-    "pinia": "^2.0.36",
+    "pinia": "^2.1.4",
     "vue": "^3.3.2",
     "vue-router": "^4.2.0",
     "vue-scrollto": "^2.20.0",
