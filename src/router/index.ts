@@ -1,52 +1,52 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import type {RouteRecordRaw} from 'vue-router'
-import Index from '@/views/Index.vue'
+import type { RouteRecordRaw } from 'vue-router'
+import Index from '@/views/home/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/index',
-    redirect: '/',
+    redirect: '/'
   },
   {
     path: '/',
     name: 'Index',
-    component: Index,
+    component: Index
   },
   {
     path: '/news',
     name: 'News',
-    component: () => import('@/views/News.vue'),
+    component: () => import('@/views/News.vue')
   },
   {
     path: '/news/:id',
     name: 'NewsDetail',
-    component: () => import('@/views/NewsDetail.vue'),
+    component: () => import('@/views/NewsDetail.vue')
   },
   {
     path: '/product',
     name: 'Product',
-    component: () => import('@/views/Product.vue'),
+    component: () => import('@/views/Product.vue')
   },
   {
     path: '/job',
     name: 'Job',
-    component: () => import('@/views/Job.vue'),
+    component: () => import('@/views/Job.vue')
   },
   {
     path: '/job/:id',
     name: 'JobDetail',
-    component: () => import('@/views/JobDetail.vue'),
+    component: () => import('@/views/JobDetail.vue')
   },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/Login.vue'),
+    component: () => import('@/views/Login.vue')
   },
   {
     path: '/about',
     name: 'About',
-    component: () => import('@/views/About.vue'),
-  },
+    component: () => import('@/views/About.vue')
+  }
 ]
 
 const router = createRouter({
