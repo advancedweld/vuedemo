@@ -1,11 +1,12 @@
 import { createStore } from 'vuex'
+import { createPinia } from 'pinia'
 export type MainStates = {
-  BannerHeight: number;
-  headerShadowActive: boolean;
-  headerShow: boolean;
-  headerLogoShow: boolean;
-  navDarkActive: boolean;
-  articlePath: string;
+  BannerHeight: number
+  headerShadowActive: boolean
+  headerShow: boolean
+  headerLogoShow: boolean
+  navDarkActive: boolean
+  articlePath: string
 }
 export default createStore<MainStates>({
   state: {
@@ -17,19 +18,19 @@ export default createStore<MainStates>({
     articlePath: ''
   },
   mutations: {
-    setBannerHeight (state, value) {
+    setBannerHeight(state, value) {
       state.BannerHeight = value.BannerHeight
     },
-    setShadowActive (state, value) {
+    setShadowActive(state, value) {
       state.headerShadowActive = value.headerShadowActive
     },
-    setHeaderShow (state, value) {
+    setHeaderShow(state, value) {
       state.headerShow = value.headerShow
     },
-    setHeaderLogo (state, value) {
+    setHeaderLogo(state, value) {
       state.headerLogoShow = value.headerLogoShow
     },
-    setNavDarkActive (state, value) {
+    setNavDarkActive(state, value) {
       state.navDarkActive = value.navDarkActive
     },
     SET_ARTICLE_PATH: (state, value) => {
@@ -37,10 +38,13 @@ export default createStore<MainStates>({
     }
   },
   actions: {
-    setArticlePath ({ commit }, path) {
-      return new Promise(resolve => commit('SET_ARTICLE_PATH', path))
+    setArticlePath({ commit }, path) {
+      return new Promise((resolve) => commit('SET_ARTICLE_PATH', path))
     }
   },
-  modules: {
-  }
+  modules: {}
 })
+
+const pinia = createPinia()
+
+export { pinia }
