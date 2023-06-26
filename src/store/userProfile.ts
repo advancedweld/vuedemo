@@ -29,5 +29,7 @@ export const useUserProfileStore = defineStore('userProfile', {
         this.isLogin = false
       })
     }
-  }
+  },
+
+  persist: true
 })

@@ -1,5 +1,7 @@
 import { createStore } from 'vuex'
 import { createPinia } from 'pinia'
+// import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
 export type MainStates = {
   BannerHeight: number
   headerShadowActive: boolean
@@ -46,5 +48,11 @@ export default createStore<MainStates>({
 })
 
 const pinia = createPinia()
-
+/* 默认全局store数据持久化 */
+pinia.use(
+  createPersistedState({
+    // 默认持久化到localStorage，也可以自定义持久化到sessionStorage
+    storage: sessionStorage
+  })
+)
 export { pinia }
