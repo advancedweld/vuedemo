@@ -14,18 +14,6 @@ import 'mavon-editor/dist/css/index.css'
 import '@/assets/style/common.css'
 import '@/assets/font/iconfont'
 
-// 网站统计
-/* eslint-disable */
-//@ts-ignore
-var _hmt = _hmt || []
-//@ts-ignore
-window._hmt = _hmt // 将_hmt挂载到window下
-;(function () {
-  var hm = document.createElement('script')
-  hm.src = 'https://hm.baidu.com/hm.js?a1c0040f374f384b2d4a876ecdc1cf5d'
-  var s: HTMLElement = document.getElementsByTagName('script')[0]
-  s.parentNode?.insertBefore(hm, s)
-})()
 
 const app = createApp(App)
 
