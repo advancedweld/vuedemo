@@ -20,22 +20,24 @@
           </div>
         </div>
         <div class="profile-wrapper">
-          <!-- <el-dropdown v-if="userProfileStore.isLogin" trigger="click" @command="handleCommand">
+          <el-dropdown v-if="userProfileStore.isLogin" trigger="click" @command="handleCommand">
             <span class="el-dropdown-link">
               <img
                 class="avatar"
                 src="https://avatars.githubusercontent.com/u/21203766?v=4"
                 alt="头像"
               />
-              <i class="el-icon-arrow-down el-icon--right"></i>
             </span>
-            <el-dropdown-menu>
-              <el-dropdown-item command="userProfile">个人中心</el-dropdown-item>
-              <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-            </el-dropdown-menu>
-          </el-dropdown> -->
-          <el-button v-if="userProfileStore.isLogin" @click="loginOutUser">登出</el-button>
-          <el-button v-else @click="loginUser">登录</el-button>
+            <template #dropdown>
+              <el-dropdown-menu class="dropdown-menu">
+                <el-dropdown-item command="userProfile">个人中心</el-dropdown-item>
+                <el-dropdown-item command="logout">退出登录</el-dropdown-item>
+                <el-dropdown-item disabled>Action 4</el-dropdown-item>
+                <el-dropdown-item divided>Action 5</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
+          <loginForm v-if="!userProfileStore.isLogin"></loginForm>
         </div>
       </div>
     </div>
@@ -43,6 +45,9 @@
 </template>
 <script lang="ts" setup name="AwHeader">
 import { computed, onBeforeMount, onMounted, ref, toRefs } from 'vue'
+
+import loginForm from '@com/loginForm/index.vue'
+
 import logoUrl from '@assets/img/index/logo.png'
 import logoColorUrl from '@assets/img/index/logoColor.png'
 
@@ -57,20 +62,12 @@ type ImgItem = {
 
 const userProfileStore = useUserProfileStore()
 
-console.log('🚀 ~ file: Header.vue:66 ~ userProfile:', userProfileStore.isLogin)
-
 const navList = ref<NavItem[]>([])
 const logo_img = ref<ImgItem[]>([])
-// const store = useStore<MainStates>()
 
-const loginUser = async () => {
-  userProfileStore.login()
-}
-const loginOutUser = async () => {
-  userProfileStore.loginOut()
-}
 const handleCommand = (command: any) => {
   console.log('@@@@@handleCommand', command)
+  userProfileStore.loginOut()
 }
 const headerShowActive = false
 const headerShow = false
@@ -79,7 +76,6 @@ const navDarkActive = false
 
 logo_img.value = [
   {
-    // path: require('../../assets/img/index/logo.png'),
     path: logoUrl
   },
   {
@@ -146,8 +142,6 @@ h2 {
   z-index: 999;
   transition: transform 0.2s ease;
 
-  //color: rgba(255, 255, 255, 1) !important;
-  //transition: all 0.3s ease;
   .header_container {
     height: 100%;
   }
@@ -175,14 +169,24 @@ h2 {
       height: 35px;
     }
   }
+
+  .el-dropdown-link {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
   .avatar {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 8px;
   }
 }
-
+.dropdown-menu {
+  min-width: 120px;
+  padding: 8px 0;
+}
 .menu-wrapper {
   display: flex;
   flex-direction: row;
@@ -249,7 +253,7 @@ h2 {
 }
 
 .profile-wrapper {
-  border: 1px solid red;
+  // border: 1px solid red;
   display: flex;
 }
 .nav_text_white {

@@ -1,16 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
-import Index from '@/views/home/Home.vue'
+import Home from '@/views/home/Home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/index',
-    redirect: '/'
+    path: '/',
+    redirect: '/index'
   },
   {
-    path: '/',
+    path: '/index',
     name: 'Index',
-    component: Index
+    component: Home
   },
   {
     path: '/news',

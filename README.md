@@ -1,6 +1,7 @@
 # 说明
 
 这是根据官网 create vue 构建的项目
+vue3 + pinia + vite
 
 # vueDemo
 
