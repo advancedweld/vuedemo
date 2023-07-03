@@ -8,7 +8,7 @@
         v-scroll-to="{ element: '.wrap-block', duration: 300, easing: 'ease', offset: 1 }"
       ></scroll-hint>
     </div>
-    <index-service></index-service>
+    <HomeContent></HomeContent>
     <AwFooter></AwFooter>
   </div>
 </template>
@@ -17,9 +17,9 @@
 import AwHeader from '@com/public/Header.vue'
 import AwFooter from '@/components/public/Footer.vue'
 import OverLay from '@/components/OverLayText.vue'
-import IndexService from '@/components/IndexService.vue'
 import Banner from '@/components/Banner.vue'
 import ScrollHint from '@/components/ScrollHint.vue'
+import HomeContent from './HomeContent.vue'
 
 import { onMounted, onUnmounted, ref } from 'vue'
 

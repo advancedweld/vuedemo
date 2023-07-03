@@ -37,7 +37,7 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <loginForm v-if="!userProfileStore.isLogin"></loginForm>
+          <!-- <loginForm v-if="!userProfileStore.isLogin"></loginForm> -->
         </div>
       </div>
     </div>
@@ -87,30 +87,30 @@ onBeforeMount(() => {
   navList.value = [
     {
       title: '首页',
-      path: '/index'
+      path: '/home'
     },
     {
-      title: '新闻中心',
+      title: '数据集群',
+      path: '/data-cluster'
+    },
+    {
+      title: '领域化大模型',
+      path: '/large-model'
+    },
+    {
+      title: '数智化应用',
+      path: '/application'
+    },
+    {
+      title: '解决方案',
+      path: '/solutions'
+    },
+    {
+      title: '新闻动态',
       path: '/news'
     },
     {
-      title: '产品与服务',
-      path: '/product'
-    },
-    // {
-    //   title: '人才招聘',
-    //   path: '/job'
-    // },
-    // {
-    //   title: '客户服务',
-    //   path: '/customer'
-    // },
-    // {
-    //   title: '登录',
-    //   path: '/login'
-    // },
-    {
-      title: '关于',
+      title: '关于我们',
       path: '/about'
     }
   ]

@@ -14,11 +14,8 @@ import 'mavon-editor/dist/css/index.css'
 import '@/assets/style/common.css'
 import '@/assets/font/iconfont'
 
-
 const app = createApp(App)
 
 app.directive('scroll-to', VueScrollTo)
 
 app.use(pinia).use(ElementPlus).use(mavonEditor).use(store).use(router).mount('#app')
-
-// console.log('@@@@@@development import.meta.env ', import.meta.env)
