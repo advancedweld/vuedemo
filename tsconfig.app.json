@@ -3,6 +3,9 @@
   "include": ["env.d.ts", "src/**/*"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
+    /* 解决element-plus ts类型报错 */
+    "moduleResolution": "node",
+    // "moduleResolution": "node16",
     "composite": true,
     "baseUrl": "./",
     /* 配置volar 全局组件类型 */
