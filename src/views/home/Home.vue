@@ -3,10 +3,12 @@
     <AwHeader :class="index_header" :isShow="false" :activeTab="'home'"></AwHeader>
     <div class="banner-wrap">
       <Banner :banner-height="BannerHeight"></Banner>
+      <!-- 覆盖的标题 -->
       <over-lay></over-lay>
-      <scroll-hint
+      <!-- banner上向下的小箭头 -->
+      <!-- <scroll-hint
         v-scroll-to="{ element: '.wrap-block', duration: 300, easing: 'ease', offset: 1 }"
-      ></scroll-hint>
+      ></scroll-hint> -->
     </div>
     <HomeContent></HomeContent>
     <AwFooter></AwFooter>

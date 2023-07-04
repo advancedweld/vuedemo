@@ -55,8 +55,6 @@ import type { HeaderProps, NavItem, ImgItem } from './type'
 /* 定义props类型 */
 const props = defineProps<HeaderProps>()
 
-console.log('@@@@@@@@@@@@@class  ', props.class, props.isShow)
-
 const userProfileStore = useUserProfileStore()
 
 const navList = ref<NavItem[]>([])
