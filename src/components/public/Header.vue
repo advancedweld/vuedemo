@@ -1,11 +1,11 @@
 <template>
-  <div class="header" :class="{ header_show: headerShow, shadow: headerShowActive }">
+  <div class="header" :class="{ header_hide: headerHide, shadow: headerShowActive }">
     <div class="header_container">
       <div class="header_content">
         <div class="logo">
           <router-link to="/">
             <img :src="logo_img[0].path" alt="logo" v-if="headerLogoShow" />
-            <img :src="logo_img[1].path" alt="logo" v-else />
+            <!-- <img :src="logo_img[1].path" alt="logo" v-else /> -->
           </router-link>
         </div>
         <div class="menu-wrapper">
@@ -32,8 +32,6 @@
               <el-dropdown-menu class="dropdown-menu">
                 <el-dropdown-item command="userProfile">个人中心</el-dropdown-item>
                 <el-dropdown-item command="logout">退出登录</el-dropdown-item>
-                <el-dropdown-item disabled>Action 4</el-dropdown-item>
-                <el-dropdown-item divided>Action 5</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -52,13 +50,12 @@ import logoUrl from '@assets/img/index/logo.png'
 import logoColorUrl from '@assets/img/index/logoColor.png'
 
 import { useUserProfileStore } from '@/store/userProfile'
-type NavItem = {
-  title: string
-  path: string
-}
-type ImgItem = {
-  path: string
-}
+import type { HeaderProps, NavItem, ImgItem } from './type'
+
+/* 定义props类型 */
+const props = defineProps<HeaderProps>()
+
+console.log('@@@@@@@@@@@@@class  ', props.class, props.isShow)
 
 const userProfileStore = useUserProfileStore()
 
@@ -69,10 +66,12 @@ const handleCommand = (command: any) => {
   console.log('@@@@@handleCommand', command)
   userProfileStore.loginOut()
 }
-const headerShowActive = false
-const headerShow = false
+const headerShowActive = true
+const headerHide = false
 const headerLogoShow = false
-const navDarkActive = false
+// const headerLogoShow = true
+/* 未激活tab是否为黑色 */
+const navDarkActive = true
 
 logo_img.value = [
   {
@@ -123,7 +122,7 @@ h2 {
   margin: 0;
 }
 
-.header_show {
+.header_hide {
   transform: translateY(-62px);
 }
 
@@ -132,10 +131,11 @@ h2 {
 }
 
 .header {
+  border: 1px solid red;
   width: 100%;
   height: 60px;
   background-color: rgba(255, 255, 255, 0);
-  //backdrop-filter: blur(0);
+  backdrop-filter: blur(0);
   box-shadow: none;
 
   position: fixed;

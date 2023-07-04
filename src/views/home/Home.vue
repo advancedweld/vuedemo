@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <AwHeader :class="index_header"></AwHeader>
+    <AwHeader :class="index_header" :isShow="false" :activeTab="'home'"></AwHeader>
     <div class="banner-wrap">
       <Banner :banner-height="BannerHeight"></Banner>
       <over-lay></over-lay>
@@ -25,7 +25,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 
 import mainStore from '@/store'
 
-const index_header = ref('')
+const index_header = ref('home')
 const BannerHeight = ref(0)
 
 const scrollTop = ref(0)

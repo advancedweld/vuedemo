@@ -12,40 +12,46 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: Home
   },
+
   {
+    /* 数据集群 */
+    path: '/data-cluster',
+    name: 'dataCluster',
+    component: () => import('@/views/News.vue')
+  },
+
+  {
+    /* 领域化大模型 */
+    path: '/large-model',
+    name: 'largeModel',
+    component: () => import('@/views/News.vue')
+  },
+
+  {
+    /* 数智化应用 */
+    path: '/application',
+    name: 'application',
+    component: () => import('@/views/News.vue')
+  },
+
+  {
+    /* 解决方案 */
+    path: '/solutions',
+    name: 'solutions',
+    component: () => import('@/views/News.vue')
+  },
+
+  {
+    /* 新闻动态 */
     path: '/news',
-    name: 'News',
+    name: 'news',
     component: () => import('@/views/News.vue')
   },
   {
-    path: '/news/:id',
-    name: 'NewsDetail',
-    component: () => import('@/views/NewsDetail.vue')
-  },
-  {
-    path: '/product',
-    name: 'Product',
-    component: () => import('@/views/Product.vue')
-  },
-  {
-    path: '/job',
-    name: 'Job',
-    component: () => import('@/views/Job.vue')
-  },
-  {
-    path: '/job/:id',
-    name: 'JobDetail',
-    component: () => import('@/views/JobDetail.vue')
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/Login.vue')
-  },
-  {
+    /* 关于我们 */
     path: '/about',
-    name: 'About',
-    component: () => import('@/views/About.vue')
+    name: 'about',
+    component: () => import('@/views/News.vue')
   }
 ]
 
