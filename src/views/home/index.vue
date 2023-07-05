@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="home-wrap">
     <AwHeader :class="index_header" :isShow="false" :activeTab="'home'"></AwHeader>
     <div class="banner-wrap">
       <Banner :banner-height="BannerHeight"></Banner>
@@ -15,15 +15,14 @@
   </div>
 </template>
 <script lang="ts" setup name="">
-// import AwHeader from '@/components/public/Header.vue'
+import { onMounted, onUnmounted, ref } from 'vue'
+
 import AwHeader from '@com/public/Header.vue'
 import AwFooter from '@/components/public/Footer.vue'
 import OverLay from '@/components/OverLayText.vue'
 import Banner from '@/components/Banner.vue'
 import ScrollHint from '@/components/ScrollHint.vue'
 import HomeContent from './HomeContent.vue'
-
-import { onMounted, onUnmounted, ref } from 'vue'
 
 import mainStore from '@/store'
 

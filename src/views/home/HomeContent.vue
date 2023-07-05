@@ -1,12 +1,13 @@
 <template>
   <div class="home-wrap">
     <DataCluster />
-    <DataCluster />
+    <LargeModal />
   </div>
 </template>
 <script lang="ts" setup name="">
 import { onBeforeMount, onMounted, ref } from 'vue'
 import DataCluster from './DataCluster.vue'
+import LargeModal from './LargeModal.vue'
 
 onMounted(() => {
   console.log('@@@@@@homecontent loaded')

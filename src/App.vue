@@ -14,7 +14,7 @@
 export default {
   name: 'App',
   inheritAttrs: false,
-  customOptions: {},
+  customOptions: {}
 }
 </script>
 
@@ -41,6 +41,7 @@ body,
 #app {
   margin: 0;
   padding: 0;
-  height: 100%;
+  min-width: 700px;
+  // height: 100%;
 }
 </style>
