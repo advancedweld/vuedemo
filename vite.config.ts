@@ -1,21 +1,23 @@
 import { fileURLToPath, URL } from 'url'
 
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 import vueJsx from '@vitejs/plugin-vue-jsx'
-console.log(' @@@@meta ', import.meta)
-// console.log(' @@@@process ', process.env)
 /*
  *import.meta.url: 当前文件目录 file:///D:/github/vuedemo/vite.config.ts
  *fileURLToPath(new URL('./src', import.meta.url)) 拼接当前文件目录为绝对路径
  */
-// https://vitejs.dev/config/
 
 //  vite css配置https://juejin.cn/post/7175366648659411000
 
 // https://cn.vitejs.dev/config/
+// const IS_PROD = import.meta.env.VITE_ENV === 'production'
 export default defineConfig(({ command, mode }) => {
+  // 根据当前工作目录中的 `mode` 加载 .env 文件
+  // 设置第三个参数为 '' 来加载所有环境变量，而不管是否有 `VITE_` 前缀。
+  const env = loadEnv(mode, process.cwd(), '')
+  const IS_PROD = env.VITE_ENV === 'production'
   const config = {
     plugins: [
       vue(),
@@ -71,9 +73,10 @@ export default defineConfig(({ command, mode }) => {
     server: {
       proxy: {
         '/api': {
-          target: 'http://localhost:3000',
+          // target: 'http://localhost:3008',
+          target: !IS_PROD ? 'https://company.zerotower.cn' : 'http://localhost:3000',
           changeOrigin: true,
-          rewrite: (path) => {
+          rewrite: (path: any) => {
             const url = path.replace(/^\/api/, '')
             console.log('@@@@@重写路径', path, url)
             return url

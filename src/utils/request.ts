@@ -1,21 +1,23 @@
 import axios from 'axios'
 
 const IS_PROD = import.meta.env.VITE_ENV === 'production'
+
 // axios 默认配置
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
-// axios.defaults.headers['x-client'] = process.env.xClient
-// axios.defaults.headers['x-client-version'] = process.env.xClientVersion
-console.log('@@@@@@@环境变量', import.meta.env)
-axios.defaults.headers['x-client'] = import.meta.env.VITE_ENV
-axios.defaults.headers['x-client-version'] = import.meta.env.VITE_ENV
-
-// axios.defaults.timeout = 30000 // 设置30s为超时
+// console.log('@@@@@@@环境变量', import.meta.env)
 
 // 存储路由跳转时，需要cancel的接口
 const requestMap = new Map()
 const instance = axios.create({
+  /* 超时时间10s */
   timeout: 10000,
-  baseURL: IS_PROD ? 'http://localhost:3000' : '/api'
+  baseURL: IS_PROD ? 'http://localhost:3000' : '/api',
+  /* 自定义header */
+  headers: {
+    'X-Requested-With': 'XMLHttpRequest',
+    'customer-header': 'customer-header',
+    'x-client-agent': 'xiangshangzhi---web'
+  }
   // proxy: {
   //   host: 'localhost',
   //   port: 3306
@@ -26,6 +28,7 @@ const instance = axios.create({
  * 请求拦截
  */
 instance.interceptors.request.use((config: any) => {
+  console.log('@@@@@@@config request', config)
   if (config.cancelToken) {
     const source = axios.CancelToken.source()
     config.axiosKey = config.url.split('?')[0]
@@ -43,6 +46,7 @@ instance.interceptors.request.use((config: any) => {
  * 结果拦截
  */
 instance.interceptors.response.use((response: any) => {
+  console.log('@@@@@@@config response', response)
   const {
     config: { axiosKey }
   } = response
