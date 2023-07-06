@@ -8,7 +8,7 @@
 <template>
   <div class="carousel-wrap">
     <el-carousel
-      :interval="30000"
+      :interval="3000"
       type="card"
       height="350px"
       arrow="never"

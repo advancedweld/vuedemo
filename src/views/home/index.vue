@@ -24,6 +24,8 @@ import Banner from '@/components/Banner.vue'
 import ScrollHint from '@/components/ScrollHint.vue'
 import HomeContent from './HomeContent.vue'
 
+import { getProductLit } from '@/apis/product'
+
 import mainStore from '@/store'
 
 const index_header = ref('home')
@@ -34,12 +36,11 @@ const scrollTop = ref(0)
 onMounted(() => {
   window.addEventListener('resize', setBannerHeight)
   setBannerHeight()
-  window.addEventListener('scroll', scrollHandle)
+  getProductLit()
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', setBannerHeight)
-  window.removeEventListener('scroll', scrollHandle)
 })
 
 function setBannerHeight() {
@@ -48,45 +49,13 @@ function setBannerHeight() {
     bannerHeight: BannerHeight.value
   })
 }
-
-function scrollHandle() {
-  scrollTop.value =
-    document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
-  if (scrollTop.value <= BannerHeight.value - 35) {
-    mainStore.commit('setHeaderLogo', {
-      headerLogoShow: true
-    })
-    mainStore.commit('setShadowActive', {
-      headerShadowActive: false
-    })
-    mainStore.commit('setNavDarkActive', {
-      navDarkActive: false
-    })
-  } else {
-    mainStore.commit('setHeaderLogo', {
-      headerLogoShow: false
-    })
-    mainStore.commit('setShadowActive', {
-      headerShadowActive: true
-    })
-    mainStore.commit('setNavDarkActive', {
-      navDarkActive: true
-    })
-  }
-}
 </script>
 <style lang="less" scoped>
+.home-wrap {
+  position: relative;
+}
 .banner-wrap {
   overflow: hidden;
   position: relative;
-}
-
-.overlay {
-  z-index: 666;
-}
-
-.wrap-block {
-  position: relative;
-  padding-top: 54px;
 }
 </style>

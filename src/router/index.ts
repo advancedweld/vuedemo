@@ -17,7 +17,7 @@ const routes: Array<RouteRecordRaw> = [
     /* 数据集群 */
     path: '/data-cluster',
     name: 'dataCluster',
-    component: () => import('@/views/News.vue')
+    component: () => import('@/views/data-cluster/index.vue')
   },
 
   {

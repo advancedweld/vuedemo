@@ -137,6 +137,7 @@ h2 {
   box-shadow: none;
 
   position: fixed;
+  top: 0;
   z-index: 999;
   transition: transform 0.2s ease;
 

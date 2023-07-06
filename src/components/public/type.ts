@@ -6,7 +6,7 @@ type ImgItem = {
   path: string
 }
 type HeaderProps = {
-  class: string
+  class?: string
   isShow: boolean
   activeTab: string
   /* 可选属性 */

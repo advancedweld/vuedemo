@@ -73,8 +73,8 @@ export default defineConfig(({ command, mode }) => {
     server: {
       proxy: {
         '/api': {
-          // target: 'http://localhost:3008',
-          target: !IS_PROD ? 'https://company.zerotower.cn' : 'http://localhost:3000',
+          target: 'http://localhost:3008',
+          // target: !IS_PROD ? 'https://company.zerotower.cn' : 'http://localhost:3000',
           changeOrigin: true,
           rewrite: (path: any) => {
             const url = path.replace(/^\/api/, '')
