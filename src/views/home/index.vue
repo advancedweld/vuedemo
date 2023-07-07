@@ -26,8 +26,6 @@ import HomeContent from './HomeContent.vue'
 
 import { getProductLit } from '@/apis/product'
 
-import mainStore from '@/store'
-
 const index_header = ref('home')
 const BannerHeight = ref(0)
 
@@ -45,9 +43,6 @@ onUnmounted(() => {
 
 function setBannerHeight() {
   BannerHeight.value = window.innerHeight
-  mainStore.commit('setBannerHeight', {
-    bannerHeight: BannerHeight.value
-  })
 }
 </script>
 <style lang="less" scoped>

@@ -1,10 +1,10 @@
 <template>
-  <div class="footer_container" :style="footerHeight + 'px'">
+  <div class="footer_container">
     <div class="footer_content">
       <div class="footer_logo footer-content-column">
         <div class="logo-container">
           <!-- <img :src="logo_url" alt="" /> -->
-            <img src="../../assets/img/index/logoColor.png" alt="" />
+          <img src="../../assets/img/index/logoColor.png" alt="" />
           <div class="logo-text">
             <p class="text1">Xanadu</p>
             <p class="text2">INTERNET COMPANY</p>
@@ -17,7 +17,7 @@
         <h2>关于我们</h2>
         <ul class="about_list">
           <li>
-            <router-link to="/job" target="_blank">企业文化</router-link>
+            <router-link to="/about" target="_blank">企业文化</router-link>
           </li>
         </ul>
       </div>
@@ -61,8 +61,6 @@ type FocusItem = {
   info: string
 }
 
-const footerHeight = ref('')
-const curWidth = ref('')
 const logo_url = ref<any>()
 logo_url.value = '../../assets/img/index/logoColor.png'
 const contact_way = ref<ConcatItem[]>([])
@@ -90,9 +88,9 @@ onMounted(() => {
   focus_icon.value = [
     {
       name: 'weibo',
-       path: weibo_img,
+      path: weibo_img,
       // qr: '../../assets/img/focus/qr_weibo.png',
-       qr: '@assets/img/focus/qr_weibo.png',
+      qr: '@assets/img/focus/qr_weibo.png',
       info: '关注官方微博'
     },
     {

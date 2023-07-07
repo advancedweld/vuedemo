@@ -12,7 +12,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     component: Home
   },
-
   {
     /* 数据集群 */
     path: '/data-cluster',
@@ -52,7 +51,8 @@ const routes: Array<RouteRecordRaw> = [
     path: '/about',
     name: 'about',
     component: () => import('@/views/News.vue')
-  }
+  },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/views/404/404.vue') }
 ]
 
 const router = createRouter({

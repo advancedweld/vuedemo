@@ -35,7 +35,7 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <!-- <loginForm v-if="!userProfileStore.isLogin"></loginForm> -->
+          <loginForm v-if="!userProfileStore.isLogin"></loginForm>
         </div>
       </div>
     </div>
@@ -131,14 +131,13 @@ h2 {
 .header {
   border: 1px solid red;
   width: 100%;
-  height: 60px;
   background-color: rgba(255, 255, 255, 0);
   backdrop-filter: blur(0);
   box-shadow: none;
 
   position: fixed;
   top: 0;
-  z-index: 999;
+  z-index: 1;
   transition: transform 0.2s ease;
 
   .header_container {

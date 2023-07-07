@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-button @click="showLoginDialog">登录</el-button>
-    <el-dialog v-model="dialogVisible" title="登录">
+    <el-dialog v-model="dialogVisible" title="登录" append-to-body>
       <el-form :model="form" ref="ruleFormRef" :rules="formRules">
         <el-form-item label="用户名" label-width="80" prop="name">
           <el-input v-model="form.name"></el-input>
@@ -87,13 +87,12 @@ const onSubmit = async (formEl: FormInstance | null) => {
 const resetForm = (formEl: FormInstance | null) => {
   console.log('@@@@重置表单', formEl?.resetFields)
 
-  // Object.assign(form, {
-  //   name: '',
-  //   password: '',
-  //   desc: 'new description'
-  // })
-
   if (!formEl) return
-  formEl.resetFields()
+  // formEl.resetFields()
+  Object.assign(form, {
+    name: '',
+    password: '',
+    desc: 'new description'
+  })
 }
 </script>

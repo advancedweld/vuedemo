@@ -27,7 +27,6 @@ export default defineConfig(({ command, mode }) => {
         // enforce: 'pre',
         transformIndexHtml(html: string) {
           // 动态替换 HTML 中的脚本引用
-          // console.log('@@@@@@html ', html)
           if (mode === 'development') {
             const _html = html.replace(
               '<script type="module" src="/src/main-prod.ts"></script>',

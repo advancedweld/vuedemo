@@ -48,11 +48,7 @@
           </el-card>
         </div>
         <div class="news-list">
-          <el-tabs
-            class="list-left"
-            v-model="pageInfo.activeName"
-            @tab-click="handleClick"
-          >
+          <el-tabs class="list-left" v-model="pageInfo.activeName" @tab-click="handleClick">
             <el-tab-pane :label="newsTabs[0].name" :name="newsTabs[0].id">
               <news-list
                 :items="newsItems.list"
@@ -84,7 +80,7 @@
                 element: '.news-container',
                 duration: 300,
                 easing: 'ease',
-                offset: -40,
+                offset: -40
               }"
             >
             </el-pagination>
@@ -110,98 +106,86 @@
   </div>
 </template>
 <script lang="ts" setup>
-import AwHeader from "@/components/public/Header.vue";
-import AwFooter from "@/components/public/Footer.vue";
-import HotNews from "@/components/HotNews.vue";
-import NewsList from "@/components/NewsList.vue";
-import { Search } from "@element-plus/icons-vue";
-import { onBeforeMount, onMounted, ref } from "vue";
-import mainStore from "@/store";
-import { onBeforeRouteLeave } from "vue-router";
-import { searchNewsList, getNewsList, getRecomNewsApi } from "@/apis/news";
+import AwHeader from '@/components/public/Header.vue'
+import AwFooter from '@/components/public/Footer.vue'
+import HotNews from '@/components/HotNews.vue'
+import NewsList from '@/components/NewsList.vue'
+import { Search } from '@element-plus/icons-vue'
+import { onBeforeMount, onMounted, ref } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
+import { searchNewsList, getNewsList, getRecomNewsApi } from '@/apis/news'
 type NewsItem = {
-  id: string;
-  name: string;
-};
-const headRef = ref();
-const newsTabs = ref<NewsItem[]>([]);
-const newsItems = ref<Record<any, any>>({});
+  id: string
+  name: string
+}
+const headRef = ref()
+const newsTabs = ref<NewsItem[]>([])
+const newsItems = ref<Record<any, any>>({})
 const pageInfo = ref<{
-  activeName: string;
-  pagenum: number;
-  pagesize: number;
-  selectDate: "";
+  activeName: string
+  pagenum: number
+  pagesize: number
+  selectDate: ''
 }>({
-  activeName: "1",
+  activeName: '1',
   // 当前页码
   pagenum: 1,
   // 当前每页显示多少条数据
   pagesize: 10,
-  selectDate: "",
-});
-const singlePage = ref(false);
-const recomNews = ref<Array<any>>([]);
-const selectDate = ref("");
-const searchList = ref<Array<any>>([]);
-const timeout = ref();
-const autocomplete = ref();
-const autocompleteFlag = ref(false);
-const hotNews = ref<Array<any>>([]);
-const searchNews = ref<any>();
+  selectDate: ''
+})
+const singlePage = ref(false)
+const recomNews = ref<Array<any>>([])
+const selectDate = ref('')
+const searchList = ref<Array<any>>([])
+const timeout = ref()
+const autocomplete = ref()
+const autocompleteFlag = ref(false)
+const hotNews = ref<Array<any>>([])
+const searchNews = ref<any>()
 onBeforeMount(() => {
   newsTabs.value = [
     {
-      id: "1",
-      name: "最新动态",
+      id: '1',
+      name: '最新动态'
     },
     {
-      id: "2",
-      name: "典型案例",
+      id: '2',
+      name: '典型案例'
     },
     {
-      id: "3",
-      name: "通知公告",
-    },
-  ];
-  getNewsItems();
-  getRecomNews();
-});
+      id: '3',
+      name: '通知公告'
+    }
+  ]
+  getNewsItems()
+  getRecomNews()
+})
 onMounted(() => {
-  mainStore.commit("setHeaderLogo", {
-    headerLogoShow: false,
-  });
-  mainStore.commit("setShadowActive", {
-    headerShadowActive: false,
-  });
-  mainStore.commit("setNavDarkActive", {
-    navDarkActive: true,
-  });
-  mainStore.commit("setHeaderShow", {
-    headerShow: false,
-  });
-});
+  console.log('@@@@news loaded')
+})
 
 async function querySearchAsync(queryString: string, cb: (list: Array<any>) => void) {
-  searchList.value = [];
-  const { data: res } = await searchNewsList(queryString);
-  searchList.value = res?.data?.list ?? [];
-  const newHtml = `<span style="color: #3370ff">${queryString}</span>`;
+  searchList.value = []
+  const { data: res } = await searchNewsList(queryString)
+  searchList.value = res?.data?.list ?? []
+  const newHtml = `<span style="color: #3370ff">${queryString}</span>`
   searchList.value.forEach((item) => {
-    item.news_title = item.news_title.replace(queryString, newHtml);
-    item.news_desc = item.news_desc.replace(queryString, newHtml);
+    item.news_title = item.news_title.replace(queryString, newHtml)
+    item.news_desc = item.news_desc.replace(queryString, newHtml)
     // item.news_desc = item.news_desc.replace(queryString, newHtml)
-  });
-  clearTimeout(timeout.value);
+  })
+  clearTimeout(timeout.value)
   timeout.value = setTimeout(() => {
-    cb(searchList.value);
-  }, 1000 * Math.random());
+    cb(searchList.value)
+  }, 1000 * Math.random())
 }
 /**
  * 解决 clearable 搜索框后再次输入不显示下拉
  */
 function searchHandle() {
   if (autocompleteFlag.value) {
-    autocomplete.value.activated = true;
+    autocomplete.value.activated = true
   }
 }
 
@@ -211,7 +195,7 @@ function searchHandle() {
  * @param event
  */
 function handleClick(tab: number | string, event: Event) {
-  getNewsItems();
+  getNewsItems()
 }
 
 /**
@@ -219,45 +203,40 @@ function handleClick(tab: number | string, event: Event) {
  * @param val
  */
 function handleCurrentChange(val: number) {
-  getNewsItems();
+  getNewsItems()
 }
 
 async function getNewsItems() {
-  const { data: res } = await getNewsList(pageInfo.value);
+  const { data: res } = await getNewsList(pageInfo.value)
   if (res.status !== 200) {
-    newsItems.value = {};
+    newsItems.value = {}
   } else {
-    newsItems.value = res.data;
+    newsItems.value = res.data
     if (newsItems.value.total <= newsItems.value.limit) {
-      singlePage.value = true;
+      singlePage.value = true
     }
   }
 }
 
 function searchByDate(data: any) {
-  getNewsItems();
+  getNewsItems()
 }
 
 async function getRecomNews() {
-  const { data: res } = await getRecomNewsApi();
+  const { data: res } = await getRecomNewsApi()
   if (res.status !== 200) {
-    hotNews.value = [];
+    hotNews.value = []
   } else {
-    recomNews.value = res.data.list;
+    recomNews.value = res.data.list
   }
 }
 
 onBeforeRouteLeave((to, from, next) => {
-  if (from.name === "News") {
-    mainStore.commit("setNavDarkActive", {
-      navDarkActive: false,
-    });
-    mainStore.commit("setHeaderLogo", {
-      headerLogoShow: false,
-    });
+  if (from.name === 'News') {
+    console.log('离开新闻页')
   }
-  next();
-});
+  next()
+})
 </script>
 <style lang="less" scoped>
 @hover_color: #3370ff;
@@ -282,7 +261,7 @@ onBeforeRouteLeave((to, from, next) => {
 .news-banner {
   width: 100%;
   height: 280px;
-  background: url("../assets/img/news/newsbanner.jpg") 50% no-repeat;
+  background: url('../assets/img/news/newsbanner.jpg') 50% no-repeat;
   background-size: cover;
   text-align: center;
   padding-top: 70px;
@@ -396,7 +375,7 @@ onBeforeRouteLeave((to, from, next) => {
   }
 
   .news-list:after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 43px;
